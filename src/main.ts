@@ -14,11 +14,14 @@ async function bootstrap() {
       transform: true,
       transformOptions: {
         enableImplicitConversion: true,
-      }
-    })
+      },
+    }),
   );
 
-  await app.listen( process.env.PORT);
-  console.log(`App running on port ${ process.env.PORT}`)
+  // Usa process.env.PORT para Render, fallback 3001 para local
+  const port = process.env.PORT || 3001;
+  await app.listen(port, '0.0.0.0'); // '0.0.0.0' necesario para Render
+  console.log(`App running on port ${port}`);
 }
+
 bootstrap();
