@@ -28,14 +28,18 @@ import { JoiValidationSchema } from './config/joi.validation';
 
 
     
-    MongooseModule.forRoot( process.env.MONGODB ),
-    
+     MongooseModule.forRoot(process.env.MONGODB, {
+      dbName: 'pokemonsdb',
+      ssl: true,
+      retryWrites: true,
+      w: 'majority',
+    }),
     PokemonModule,
 
     CommonModule,
 
     SeedModule,
-
+ 
   ],
 })
 export class AppModule {}
